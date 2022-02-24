@@ -1,0 +1,8 @@
+        // const h3 = document.createElement('h3');
+        // h3.innerText = country.name.common
+
+        // const p = document.createElement('p');
+        // p.innerText = country.name.official
+
+        // div.appendChild(h3);
+        // div.appendChild(p);
