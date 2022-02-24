@@ -1,31 +1,67 @@
+// const notFound = document.getElementById('not-found').style.display = 'none'
+// let empty = document.getElementById('empty').style.display = 'none';
+
+let error = (id, value) => {
+    document.getElementById(id).style.display = value;
+}
+
+error('not-found', 'none');
+error('empty', 'none');
+
+const setDetails = document.getElementById('show-details');
+
+
 const searchFood = () => {
     const inputField = document.getElementById('input-data');
     const inputData = inputField.value;
     inputField.value = '';
     console.log(inputData);
 
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputData}`)
-        .then(response => response.json())
-        .then(data => showData(data.meals))
+    if (inputData == '') {
+        error('empty', 'block');
+        console.log('plase enter some thing')
+    }
+
+    else {
+        error('empty', 'none');
+        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputData}`)
+            .then(response => response.json())
+            .then(data => showData(data.meals))
+    }
+
+
 
 }
 
 const showData = (meals) => {
 
     //  assing ass a grobal varable 
+    console.log(meals == null)
 
     const showResults = document.getElementById('result');
     showResults.innerHTML = ``;
+    setDetails.innerHTML = ``;
 
 
-    meals.forEach(meal => {
 
-        console.log(meal)
+    if (meals == null) {
 
-        const div = document.createElement('div')
-        div.classList = 'col';
+        error('not-found', 'block');
+        console.log('nothinf')
 
-        div.innerHTML = `
+    }
+    else {
+
+        error('not-found', 'none');
+
+        meals.forEach(meal => {
+
+
+
+            const div = document.createElement('div')
+            div.classList = 'col';
+
+            div.innerHTML = `
         <div onclick="showDetils(${meal.idMeal})" class="card">
                 <img  width="40%" src="${meal.strMealThumb}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -35,9 +71,13 @@ const showData = (meals) => {
             </div>
 
         `
-        showResults.appendChild(div);
+            showResults.appendChild(div);
 
-    });
+        });
+
+    }
+
+
 }
 
 const showDetils = (mealID) => {
@@ -51,9 +91,12 @@ const showDetils = (mealID) => {
 
 }
 
+
+
+
 const displayDetails = (data) => {
 
-    const setDetails = document.getElementById('show-details');
+    // const setDetails = document.getElementById('show-details');
     setDetails.innerHTML = ``;
     const div = document.createElement('div');
     div.innerHTML = `
