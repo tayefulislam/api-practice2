@@ -1,3 +1,16 @@
+const searchBtn = document.getElementById("button-search");
+const inputValue = document.getElementById("input-data");
+
+inputValue.addEventListener("keypress", function (event) {
+    // event.preventDefault();
+    if (event.keyCode == 13) {
+        searchBtn.click();
+    }
+
+
+});
+
+
 // const notFound = document.getElementById('not-found').style.display = 'none'
 // let empty = document.getElementById('empty').style.display = 'none';
 
