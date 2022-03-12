@@ -49,7 +49,7 @@ const searchFood = () => {
 const showData = (meals) => {
 
     //  assing ass a grobal varable 
-    console.log(meals == null)
+    // console.log(meals == null)
 
     const showResults = document.getElementById('result');
     showResults.innerHTML = ``;
